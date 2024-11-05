@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Header.css';
 import useLocation from '../../hooks/useLocation';
-// import { getCityName } from '../../services/geocoding';
 import MobileMenu from './MobileMenu/MobileMenu';
 import CitySelector from './CitySelector/CitySelector';
-// import { getCache } from '../../utils/cache';
 
 
 const Header = () => {
@@ -13,7 +11,6 @@ const Header = () => {
   const [isCitySelectorActive, setIsCitySelectorActive] = useState(false);
 
   const { location } = useLocation();
-  // const [city, setCity] = useState('Определение...');
 
   // Обработчик открытия/закрытия мобильного меню
   const toggleMobileNav = () => {
@@ -49,14 +46,9 @@ const Header = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   setCity(getCache('location').city);
-  // }, [location]);
-
   // Обработчик кнопки геолокации
   const handleGeolocation = () => {
     toggleCitySelector();
-    // alert('Пока что ручной ввод города не поддерживается...');
   };
 
   return (
@@ -65,7 +57,6 @@ const Header = () => {
         <div className="header-container">
           <div className="logo">
             <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} to="/">
-              {/* <img className='header-logo' src={logo} alt='Logo' /> */}
               <i className="fa-solid fa-cloud"></i>
             </NavLink>
           </div>
@@ -87,9 +78,6 @@ const Header = () => {
               <li>
                 <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} to="/map">Карта</NavLink>
               </li>
-              {/* <li>
-                <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} to="/news">Новости</NavLink>
-              </li> */}
               <li>
                 <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} to="/notifications">Уведомления</NavLink>
               </li>
