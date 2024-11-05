@@ -64,7 +64,7 @@ const Header = () => {
       <header className="header">
         <div className="header-container">
           <div className="logo">
-            <NavLink activeClassName="active" className="nav-link" to="/">
+            <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} to="/">
               {/* <img className='header-logo' src={logo} alt='Logo' /> */}
               <i className="fa-solid fa-cloud"></i>
             </NavLink>
@@ -82,19 +82,19 @@ const Header = () => {
           <nav className="nav">
             <ul className="nav-list">
               <li>
-                <NavLink activeClassName="active" className="nav-link" to="/forecast">Прогноз</NavLink>
+                <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} to="/forecast">Прогноз</NavLink>
               </li>
               <li>
-                <NavLink activeClassName="active" className="nav-link" to="/map">Карта</NavLink>
+                <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} to="/map">Карта</NavLink>
               </li>
               {/* <li>
-                <NavLink activeClassName="active" className="nav-link" to="/news">Новости</NavLink>
+                <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} to="/news">Новости</NavLink>
               </li> */}
               <li>
-                <NavLink activeClassName="active" className="nav-link" to="/notifications">Уведомления</NavLink>
+                <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} to="/notifications">Уведомления</NavLink>
               </li>
               <li>
-                <NavLink activeClassName="active" className="nav-link" to="/safe-levels">Нормы</NavLink>
+                <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} to="/safe-levels">Нормы</NavLink>
               </li>
             </ul>
           </nav>
