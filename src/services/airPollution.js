@@ -5,7 +5,7 @@ import { BACKEND_URL } from '../config';
 export const getAirPollutionData = async (lat, lon) => {
   try {
     //отправляем гет на сервер
-    const response = await axios.get(`${BACKEND_URL}/get-pollution?lat=${lat}&lon=${lon}`);
+    const response = await axios.get(`${BACKEND_URL}/api/get-pollution?lat=${lat}&lon=${lon}`);
     //получаем данные
     return response.data;
   } catch (error) {
@@ -18,7 +18,7 @@ export const getAirPollutionData = async (lat, lon) => {
 export const getAirPollutionForecast = async (lat, lon) => {
   try {
     //отправляем гет на сервер
-    const response = await axios.get(`${BACKEND_URL}/get-forecast?lat=${lat}&lon=${lon}`);
+    const response = await axios.get(`${BACKEND_URL}/api/get-forecast?lat=${lat}&lon=${lon}`);
     //получаем данные
     return response.data;
   } catch (error) {
