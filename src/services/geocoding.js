@@ -1,6 +1,7 @@
 import { getCache, setCache } from '../utils/cache';
-const GEOCODING_API_KEY = 'f1ea1814ac5b4e5ab566d9c53b1a501a';
+import { GEOCODING_API_KEY, BACKEND_URL } from '../config';
 const isDevMode = process.env.NODE_ENV === 'development';
+
 const BASE_URL = (isDevMode ? 'http' : 'https') + `://api.opencagedata.com/geocode/v1`;
 
 /**
@@ -12,8 +13,11 @@ const BASE_URL = (isDevMode ? 'http' : 'https') + `://api.opencagedata.com/geoco
 export const fetchCityName = async (lat, lon) => {
   try {
     const response = await fetch(
-      `${BASE_URL}/json?q=${lat}+${lon}&key=${GEOCODING_API_KEY}&language=ru&pretty=1`
+      `${BACKEND_URL}/get-city`
     );
+    // const response = await fetch(
+    //   `${BASE_URL}/json?q=${lat}+${lon}&key=${GEOCODING_API_KEY}&language=ru&pretty=1`
+    // );
     const data = await response.json();
     if (data.results.length > 0) {
       const components = data.results[0].components;
