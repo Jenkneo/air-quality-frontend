@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import useLocation from '../hooks/useLocation';
 import { getAirPollutionForecast } from '../services/airPollution';
-import { getHealthRecommendations } from '../hooks/airQualityRecommendations'; // Обновите путь
+import { getHealthRecommendations } from '../hooks/airQualityRecommendations';
 
 const ForecastContainer = styled.div`
   padding: 20px;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { setCache, getCache } from '../utils/cache';
+import { BACKEND_URL } from '../config';
 
 function useLocation(initialPosition = null) {
   const [location, setLocation] = useState(initialPosition || { city: null, lat: null, lon: null });
@@ -14,7 +15,7 @@ function useLocation(initialPosition = null) {
     }
 
     const fetchCityByCoords = (lat, lon) => {
-      fetch(`http://stylua.ru:8000/api/get-city?lon=${lon}&lat=${lat}`)
+      fetch(`${BACKEND_URL}/get-city?lon=${lon}&lat=${lat}`)
         .then((response) => response.json())
         .then((data) => {
           const locationData = {
@@ -29,7 +30,7 @@ function useLocation(initialPosition = null) {
     };
 
     const handleLocationError = () => {
-      fetch("http://stylua.ru:8000/api/get-city")
+      fetch(`${BACKEND_URL}/get-city`)
         .then((response) => response.json())
         .then((data) => {
           const locationData = {
