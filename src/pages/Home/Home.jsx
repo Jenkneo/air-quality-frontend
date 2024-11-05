@@ -1,5 +1,3 @@
-// src/components/Home/Home.jsx
-
 import React, { useEffect, useState } from 'react';
 import './Home.css';
 import useLocation from '../../hooks/useLocation';
