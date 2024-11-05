@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './CitySelector.css';
 import citiesData from './cities.json';
 import useLocation from '../../../hooks/useLocation';
-import { setCityName } from '../../../services/geocoding';
+// import { setCityName } from '../../../services/geocoding';
+import { setCache } from '../../../utils/cache';
+
 
 const CitySelector = ({ isCitySelectorActive, closeCitySelector }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -30,13 +32,14 @@ const CitySelector = ({ isCitySelectorActive, closeCitySelector }) => {
   }, [isCitySelectorActive]);
 
   const handleCityClick = (city) => {
-    const coordinates = {
+    const location = {
+      "city": city.name,
       "lon": city.lon,
       "lat": city.lat
     }
 
-    setCityName(city.name);
-    setInitialPosition(coordinates);
+    setCache('location', location)
+    setInitialPosition(location);
     closeCitySelector();
     window.location.reload();
   };
