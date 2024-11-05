@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './AirQuality.css';
-import useGeolocation from '../../../hooks/useGeolocation';
+import useLocation from '../../../hooks/useLocation';
 import { getCityName } from '../../../services/geocoding';
 
 
 const AirQuality = ({ airData }) => {
-  const { position } = useGeolocation();
+  const { location } = useLocation();
   const [city, setCity] = useState('Определение...');
   
   useEffect(() => {
     const fetchCity = async () => {
-      if (position.lat && position.lon) {
-        const cityName = await getCityName(position.lat, position.lon);
+      if (location.lat && location.lon) {
+        const cityName = await getCityName(location.lat, location.lon);
         setCity(cityName);
       }
     };
 
     fetchCity();
-  }, [position]);
+  }, [location]);
 
   if (!airData || !airData.list || airData.list.length === 0) {
     return (

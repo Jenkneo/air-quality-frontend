@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Header.css';
-import useGeolocation from '../../hooks/useGeolocation';
+import useLocation from '../../hooks/useLocation';
 import { getCityName } from '../../services/geocoding';
 import MobileMenu from './MobileMenu/MobileMenu';
 import CitySelector from './CitySelector/CitySelector';
@@ -11,7 +11,7 @@ const Header = () => {
   const [isMobileNavActive, setIsMobileNavActive] = useState(false);
   const [isCitySelectorActive, setIsCitySelectorActive] = useState(false);
 
-  const { position } = useGeolocation();
+  const { location } = useLocation();
   const [city, setCity] = useState('Определение...');
 
   // Обработчик открытия/закрытия мобильного меню
@@ -50,14 +50,14 @@ const Header = () => {
 
   useEffect(() => {
     const fetchCity = async () => {
-      if (position.lat && position.lon) {
-        const cityName = await getCityName(position.lat, position.lon);
+      if (location.lat && location.lon) {
+        const cityName = await getCityName(location.lat, location.lon);
         setCity(cityName);
       }
     };
 
     fetchCity();
-  }, [position]);
+  }, [location]);
 
   // Обработчик кнопки геолокации
   const handleGeolocation = () => {

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './CitySelector.css';
 import citiesData from './cities.json';
-import useGeolocation from '../../../hooks/useGeolocation';
+import useLocation from '../../../hooks/useLocation';
 import { setCityName } from '../../../services/geocoding';
 
 const CitySelector = ({ isCitySelectorActive, closeCitySelector }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortedCities, setSortedCities] = useState([]);
   const [initialPosition, setInitialPosition] = useState(null);
-  const { } = useGeolocation(initialPosition); // eslint-disable-line
+  const { } = useLocation(initialPosition); // eslint-disable-line
 
   useEffect(() => {
     const sorted = [...citiesData].sort((a, b) =>
