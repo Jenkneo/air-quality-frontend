@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './CitySelector.css';
 import citiesData from './cities.json';
 import useLocation from '../../../hooks/useLocation';
-// import { setCityName } from '../../../services/geocoding';
 import { setCache } from '../../../utils/cache';
 
 
