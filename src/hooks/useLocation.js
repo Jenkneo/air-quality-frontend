@@ -2,28 +2,43 @@ import { useState, useEffect } from 'react';
 import { setCache, getCache } from '../utils/cache';
 
 function useLocation(initialPosition = null) {
-  const [location, setLocation] = useState(initialPosition || { lat: null, lon: null }); // состояние для хранения данных местоположения
-  const [error, setError] = useState(null); // состояние для ошибок (например, если и IP не получится получить)
+  const [location, setLocation] = useState(initialPosition || { city: null, lat: null, lon: null });
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const cachedPosition = getCache('location');
+    const cachedLocation = getCache('location');
 
-    if (cachedPosition) {
-      setLocation(cachedPosition);
+    if (cachedLocation) {
+      setLocation(cachedLocation);
+      return;
     }
 
-    const handleLocationError = () => {
-      // Если доступ к геопозиции отклонен, запрашиваем местоположение по IP
-      fetch("http://stylua.ru:8000/api/get-city")
+    const fetchCityByCoords = (lat, lon) => {
+      fetch(`http://stylua.ru:8000/api/get-city?lon=${lon}&lat=${lat}`)
         .then((response) => response.json())
         .then((data) => {
-          const location = {
+          const locationData = {
             city: data.city,
             lat: data.coordinates.lat,
             lon: data.coordinates.lon,
-          }
-          setLocation(location);
-          setCache('location', location);
+          };
+          setLocation(locationData);
+          setCache('location', locationData);
+        })
+        .catch((err) => setError("Ошибка при получении города по координатам: " + err.message));
+    };
+
+    const handleLocationError = () => {
+      fetch("http://stylua.ru:8000/api/get-city")
+        .then((response) => response.json())
+        .then((data) => {
+          const locationData = {
+            city: data.city,
+            lat: data.coordinates.lat,
+            lon: data.coordinates.lon,
+          };
+          setLocation(locationData);
+          setCache('location', locationData);
         })
         .catch((err) => setError("Ошибка при получении местоположения по IP: " + err.message));
     };
@@ -31,19 +46,17 @@ function useLocation(initialPosition = null) {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          setLocation({
-            lat: position.coords.latitude,
-            lon: position.coords.longitude,
-          });
+          const { latitude, longitude } = position.coords;
+          fetchCityByCoords(latitude, longitude);
         },
-        handleLocationError // Вызываем handleLocationError, если пользователь отклонит запрос на доступ
+        handleLocationError
       );
     } else {
       handleLocationError();
     }
   }, []);
 
-  return { location, error }; // Возвращаем объект с данными местоположения и возможной ошибкой
+  return { location, error };
 }
 
 export default useLocation;
