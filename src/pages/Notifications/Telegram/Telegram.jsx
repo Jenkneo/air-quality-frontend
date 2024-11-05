@@ -20,7 +20,7 @@ const Telegram = () => {
     <div className="telegram-container">
       <p>Чтобы подписаться на уведомления, нажмите на кнопку ниже.</p>
       <button className="submit-button" onClick={redirectToTelegram}>
-        <i class="fa-brands fa-telegram"></i>
+        <i className="fa-brands fa-telegram"></i>
         Подписаться
       </button>
     </div>

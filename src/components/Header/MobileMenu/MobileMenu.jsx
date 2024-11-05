@@ -23,19 +23,19 @@ const MobileNav = ({ isMobileNavActive, closeMobileNav }) => {
       </button>
       <ul className="nav-list">
         <li>
-          <NavLink activeClassName="active" onClick={closeMobileNav} className="nav-link" to="/">Главная</NavLink>
+          <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} onClick={closeMobileNav} to="/">Главная</NavLink>
         </li>
         <li>
-          <NavLink activeClassName="active" onClick={closeMobileNav} className="nav-link" to="/forecast">Прогноз</NavLink>
+          <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} onClick={closeMobileNav} to="/forecast">Прогноз</NavLink>
         </li>
         <li>
-          <NavLink activeClassName="active" onClick={closeMobileNav} className="nav-link" to="/map">Карта</NavLink>
+          <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} onClick={closeMobileNav} to="/map">Карта</NavLink>
         </li>
         <li>
-          <NavLink activeClassName="active" onClick={closeMobileNav} className="nav-link" to="/notifications">Уведомления</NavLink>
+          <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} onClick={closeMobileNav} to="/notifications">Уведомления</NavLink>
         </li>
         <li>
-          <NavLink activeClassName="active" onClick={closeMobileNav} className="nav-link" to="/safe-levels">Нормы</NavLink>
+          <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} onClick={closeMobileNav} to="/safe-levels">Нормы</NavLink>
         </li>
       </ul>
     </nav>
