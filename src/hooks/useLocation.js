@@ -15,7 +15,7 @@ function useLocation(initialPosition = null) {
     }
 
     const fetchCityByCoords = (lat, lon) => {
-      fetch(`${BACKEND_URL}/get-city?lon=${lon}&lat=${lat}`)
+      fetch(`${BACKEND_URL}/api/get-city?lon=${lon}&lat=${lat}`)
         .then((response) => response.json())
         .then((data) => {
           const locationData = {
@@ -30,7 +30,7 @@ function useLocation(initialPosition = null) {
     };
 
     const handleLocationError = () => {
-      fetch(`${BACKEND_URL}/get-city`)
+      fetch(`${BACKEND_URL}/api/get-city`)
         .then((response) => response.json())
         .then((data) => {
           const locationData = {
