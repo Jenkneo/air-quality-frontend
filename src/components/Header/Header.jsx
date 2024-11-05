@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Header.css';
 import useLocation from '../../hooks/useLocation';
-import { getCityName } from '../../services/geocoding';
+// import { getCityName } from '../../services/geocoding';
 import MobileMenu from './MobileMenu/MobileMenu';
 import CitySelector from './CitySelector/CitySelector';
-// import logo from './logo.png';
+// import { getCache } from '../../utils/cache';
+
 
 const Header = () => {
   const [isMobileNavActive, setIsMobileNavActive] = useState(false);
   const [isCitySelectorActive, setIsCitySelectorActive] = useState(false);
 
   const { location } = useLocation();
-  const [city, setCity] = useState('Определение...');
+  // const [city, setCity] = useState('Определение...');
 
   // Обработчик открытия/закрытия мобильного меню
   const toggleMobileNav = () => {
@@ -48,16 +49,9 @@ const Header = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const fetchCity = async () => {
-      if (location.lat && location.lon) {
-        const cityName = await getCityName(location.lat, location.lon);
-        setCity(cityName);
-      }
-    };
-
-    fetchCity();
-  }, [location]);
+  // useEffect(() => {
+  //   setCity(getCache('location').city);
+  // }, [location]);
 
   // Обработчик кнопки геолокации
   const handleGeolocation = () => {
@@ -83,7 +77,7 @@ const Header = () => {
             >
               <i className="fas fa-map-marker-alt"></i>
             </button>
-            <span className="city-name">{city}</span>
+            <span className="city-name">{location.city}</span>
           </div>
           <nav className="nav">
             <ul className="nav-list">
