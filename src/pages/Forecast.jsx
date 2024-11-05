@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import useGeolocation from '../hooks/useGeolocation';
+import useLocation from '../hooks/useLocation';
 import { getAirPollutionForecast } from '../services/airPollution';
 import { getHealthRecommendations } from '../hooks/airQualityRecommendations'; // Обновите путь
 
@@ -34,19 +34,19 @@ const HourCard = styled.div`
 `;
 
 const Forecast = () => {
-  const { position, error } = useGeolocation();
+  const { location, error } = useLocation();
   const [forecastData, setForecastData] = useState(null);
 
   useEffect(() => {
     const fetchForecastData = async () => {
-      if (position.lat && position.lon) {
-        const data = await getAirPollutionForecast(position.lat, position.lon);
+      if (location.lat && location.lon) {
+        const data = await getAirPollutionForecast(location.lat, location.lon);
         setForecastData(data);
       }
     };
 
     fetchForecastData();
-  }, [position]);
+  }, [location]);
 
   // Группировка данных по дням
   const groupForecastByDay = (data) => {
