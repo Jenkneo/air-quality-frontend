@@ -1,11 +1,11 @@
 :root {
-  --widget-bg-color: #1d3557;
   --widget-text-color: white;
   --nav-link-font-size: 14px;
   --mobile-nav-link-font-size: 24px;
   --mobile-menu-background-color: rgba(255, 255, 255, 0.95);
   --link-active-color: rgb(32, 174, 230);
 }
+
 .loading-container {
   margin-top: 130px;
   margin-bottom: 130px;
@@ -38,6 +38,8 @@
   padding: 20px;
   border-radius: 10px;
   font-family: var(--font-family);
+  grid-column: 1 / -1;
+  width: 100%;
 }
 
 .location-info {
