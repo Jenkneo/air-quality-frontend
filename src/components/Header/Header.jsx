@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Header.css';
-import useGeolocation from '../../hooks/useGeolocation';
-import { getCityName } from '../../services/geocoding';
+import useLocation from '../../hooks/useLocation';
 import MobileMenu from './MobileMenu/MobileMenu';
 import CitySelector from './CitySelector/CitySelector';
-// import logo from './logo.png';
+
 
 const Header = () => {
   const [isMobileNavActive, setIsMobileNavActive] = useState(false);
   const [isCitySelectorActive, setIsCitySelectorActive] = useState(false);
 
-  const { position } = useGeolocation();
-  const [city, setCity] = useState('Определение...');
+  const { location } = useLocation();
 
   // Обработчик открытия/закрытия мобильного меню
   const toggleMobileNav = () => {
@@ -48,21 +46,9 @@ const Header = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const fetchCity = async () => {
-      if (position.lat && position.lon) {
-        const cityName = await getCityName(position.lat, position.lon);
-        setCity(cityName);
-      }
-    };
-
-    fetchCity();
-  }, [position]);
-
   // Обработчик кнопки геолокации
   const handleGeolocation = () => {
     toggleCitySelector();
-    // alert('Пока что ручной ввод города не поддерживается...');
   };
 
   return (
@@ -70,8 +56,7 @@ const Header = () => {
       <header className="header">
         <div className="header-container">
           <div className="logo">
-            <NavLink activeClassName="active" className="nav-link" to="/">
-              {/* <img className='header-logo' src={logo} alt='Logo' /> */}
+            <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} to="/">
               <i className="fa-solid fa-cloud"></i>
             </NavLink>
           </div>
@@ -83,24 +68,21 @@ const Header = () => {
             >
               <i className="fas fa-map-marker-alt"></i>
             </button>
-            <span className="city-name">{city}</span>
+            <span className="city-name">{location.city}</span>
           </div>
           <nav className="nav">
             <ul className="nav-list">
               <li>
-                <NavLink activeClassName="active" className="nav-link" to="/forecast">Прогноз</NavLink>
+                <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} to="/forecast">Прогноз</NavLink>
               </li>
               <li>
-                <NavLink activeClassName="active" className="nav-link" to="/map">Карта</NavLink>
-              </li>
-              {/* <li>
-                <NavLink activeClassName="active" className="nav-link" to="/news">Новости</NavLink>
-              </li> */}
-              <li>
-                <NavLink activeClassName="active" className="nav-link" to="/notifications">Уведомления</NavLink>
+                <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} to="/map">Карта</NavLink>
               </li>
               <li>
-                <NavLink activeClassName="active" className="nav-link" to="/safe-levels">Нормы</NavLink>
+                <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} to="/notifications">Уведомления</NavLink>
+              </li>
+              <li>
+                <NavLink className={({ isActive }) => `${isActive ? 'active' : ''} nav-link`} to="/safe-levels">Нормы</NavLink>
               </li>
             </ul>
           </nav>

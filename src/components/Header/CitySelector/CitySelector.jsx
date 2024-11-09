@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './CitySelector.css';
 import citiesData from './cities.json';
-import useGeolocation from '../../../hooks/useGeolocation';
-import { setCityName } from '../../../services/geocoding';
+import useLocation from '../../../hooks/useLocation';
+import { setCache } from '../../../utils/cache';
+
 
 const CitySelector = ({ isCitySelectorActive, closeCitySelector }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortedCities, setSortedCities] = useState([]);
   const [initialPosition, setInitialPosition] = useState(null);
-  const { } = useGeolocation(initialPosition); // eslint-disable-line
+  const { } = useLocation(initialPosition); // eslint-disable-line
 
   useEffect(() => {
     const sorted = [...citiesData].sort((a, b) =>
@@ -30,13 +31,14 @@ const CitySelector = ({ isCitySelectorActive, closeCitySelector }) => {
   }, [isCitySelectorActive]);
 
   const handleCityClick = (city) => {
-    const coordinates = {
+    const location = {
+      "city": city.name,
       "lon": city.lon,
       "lat": city.lat
     }
 
-    setCityName(city.name);
-    setInitialPosition(coordinates);
+    setCache('location', location)
+    setInitialPosition(location);
     closeCitySelector();
     window.location.reload();
   };

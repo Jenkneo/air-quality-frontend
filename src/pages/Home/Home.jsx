@@ -1,29 +1,23 @@
-// src/components/Home/Home.jsx
-
 import React, { useEffect, useState } from 'react';
-import './Home.css'; // Импортируем CSS файл
-import useGeolocation from '../../hooks/useGeolocation';
-// import { getCityName } from '../../services/geocoding'; // Импортируем функцию для получения названия города
-import { getAirPollutionData, getAirPollutionForecast } from '../../services/airPollution'; // Импортируем обе функции
-
-import AirQuality from './AirQuality/AirQuality'; // Импортируем новый компонент
-import Forecast from './Forecast/Forecast'; // Импортируем новый компонент
+import './Home.css';
+import useLocation from '../../hooks/useLocation';
+import { getAirPollutionData, getAirPollutionForecast } from '../../services/airPollution';
+import AirQuality from './AirQuality/AirQuality';
+import Forecast from './Forecast/Forecast';
 
 const Home = () => {
-  const { position,  } = useGeolocation();
+  const { location,  } = useLocation();
   const [airData, setAirData] = useState(null);
   const [forecastData, setForecastData] = useState(null);
 
   useEffect(() => {
     const fetchAirData = async () => {
-      if (position.lat && position.lon) {
+      if (location.lat && location.lon) {
         try {
-          // Получаем текущее качество воздуха
-          const currentAirData = await getAirPollutionData(position.lat, position.lon);
+          const currentAirData = await getAirPollutionData(location.lat, location.lon);
           setAirData(currentAirData);
 
-          // Получаем прогноз на следующие сутки
-          const forecast = await getAirPollutionForecast(position.lat, position.lon);
+          const forecast = await getAirPollutionForecast(location.lat, location.lon);
           setForecastData(forecast);
         } catch (err) {
           console.error('Ошибка при получении данных:', err);
@@ -32,7 +26,7 @@ const Home = () => {
     };
 
     fetchAirData();
-  }, [position]);
+  }, [location]);
 
   const getNextDayForecast = () => {
     if (!forecastData) return null;

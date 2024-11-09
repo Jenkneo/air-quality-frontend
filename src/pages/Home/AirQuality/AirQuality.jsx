@@ -1,31 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './AirQuality.css';
-import useGeolocation from '../../../hooks/useGeolocation';
-import { getCityName } from '../../../services/geocoding';
+import useLocation from '../../../hooks/useLocation';
 
 
 const AirQuality = ({ airData }) => {
-  const { position } = useGeolocation();
-  const [city, setCity] = useState('Определение...');
-  
-  useEffect(() => {
-    const fetchCity = async () => {
-      if (position.lat && position.lon) {
-        const cityName = await getCityName(position.lat, position.lon);
-        setCity(cityName);
-      }
-    };
-
-    fetchCity();
-  }, [position]);
+  const { location } = useLocation();
 
   if (!airData || !airData.list || airData.list.length === 0) {
     return (
       <div className="air-quality-widget">
       <div className="location-info">
         <i className="fa-solid fa-location-arrow" />
-        <span> {city}</span>
+        <span> {location.city}</span>
         <p>Сейчас {getCurrentTime()}</p>
       </div>
       <div className="air-quality-info">
@@ -79,7 +66,7 @@ const AirQuality = ({ airData }) => {
     <div className="air-quality-widget">
       <div className="location-info">
         <i className="fa-solid fa-location-arrow" />
-        <span> {city}</span>
+        <span> {location.city}</span>
         <p>Сейчас {getCurrentTime()}</p>
       </div>
       <div className="air-quality-info">

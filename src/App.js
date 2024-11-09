@@ -9,7 +9,6 @@ import Forecast from './pages/Forecast';
 import Notifications from './pages/Notifications/Notifications';
 import SmokePrediction from './pages/SmokePrediction';
 import SafeLevels from './pages/SafeLevels';
-import News from './pages/News';
 import GlobalStyles from './styles/GlobalStyles';
 
 import './App.css';
@@ -27,7 +26,6 @@ function App() {
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/smoke-prediction" element={<SmokePrediction />} />
         <Route path="/safe-levels" element={<SafeLevels />} />
-        <Route path="/news" element={<News />} />
       </Routes>
       <Footer />
     </Router>
