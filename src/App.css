@@ -14,3 +14,10 @@
 body {
   font-family: var(--font-family);
 }
+
+.leaflet-control-attribution  {
+  visibility: hidden;
+}
+.leaflet-control {
+  visibility: hidden;
+}
