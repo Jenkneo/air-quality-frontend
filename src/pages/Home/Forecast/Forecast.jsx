@@ -6,9 +6,9 @@ const Forecast = ({ forecastData }) => {
   if (!forecastData) {
     return (
       <div className="forecast-container">
-        <h3>Данные прогноза недоступны или все еще подгружаются....</h3>
+        <h3>Данные прогноза недоступны или все еще подгружаются...</h3>
       </div>
-    )
+    );
   }
 
   const dayForecast = forecastData.list.slice(0, 24);
@@ -71,62 +71,61 @@ const Forecast = ({ forecastData }) => {
     return groupedData;
   }
 
-
-  const data = summarizeData(groupByDayAndTimeOfDay(dayForecast))
-
+  const data = summarizeData(groupByDayAndTimeOfDay(dayForecast));
 
   return (
     <div className="day-forecast__widget">
-      <div className="day-forecast__widget-row">
-        <span className="day-forecast__time">Утро</span>
-        <div className="day-forecast__current-aqi">
-          <span className="day-forecast__icon">☁️</span>
-          <span className="day-forecast__aqi">1-2 AQI</span>
-        </div>
-        <span className="day-forecast__status normal">Показатели в норме</span>
-      </div>
-      <div className="day-forecast__widget-row">
-        <span className="day-forecast__time">День</span>
-        <div className="day-forecast__current-aqi">
-          <span className="day-forecast__icon">☁️</span>
-          <span className="day-forecast__aqi">2-3 AQI</span>
-        </div>
-        <span className="day-forecast__status moderate">Есть загрязнение</span>
-      </div>
-      <div className="day-forecast__widget-row">
-        <span className="day-forecast__time">Вечер</span>
-        <div className="day-forecast__current-aqi">
-          <span className="day-forecast__icon">☁️</span>
-          <span className="day-forecast__aqi">3-5 AQI</span>
-        </div>
-        <span className="day-forecast__status high">Превышение нормы</span>
-      </div>
-      <div className="day-forecast__widget-row">
-        <span className="day-forecast__time">Ночь</span>
-        <div className="day-forecast__current-aqi">
-          <span className="day-forecast__icon">☁️</span>
-          <span className="day-forecast__aqi">2-4 AQI</span>
-        </div>
-        <span className="day-forecast__status normal">Показатели в норме</span>
-      </div>
-      <div className="day-forecast__divider">
-          <div className="day-forecast__bottom-divider" />
-          <div className="day-forecast__after-divider" />
-        </div>
-      <div className="day-forecast__widget-row">
-        <span className="day-forecast__time">Утро</span>
-        <div className="day-forecast__current-aqi">
-          <span className="day-forecast__icon">☁️</span>
-          <span className="day-forecast__aqi">2-4 AQI</span>
-        </div>
-        <span className="day-forecast__status normal">Показатели в норме</span>
-      </div>
+      {Object.keys(data).map((day, index) => (
+        <React.Fragment key={day}>
+          {/* Разделитель между "сегодня" и "завтра" */}
+          {index > 0 && (
+            <div className="day-forecast__divider">
+              <div className="day-forecast__bottom-divider" />
+              <div className="day-forecast__after-divider" />
+            </div>
+          )}
+  
+          <div className="forecast-day">
+            <h4 className='day-forecast__title'>{day === 'today' ? 'Сегодня' : 'Завтра'}</h4>
+            {Object.keys(data[day]).map(timeOfDay => (
+              <div key={timeOfDay} className="day-forecast__widget-row">
+                <span className="day-forecast__time">
+                  {timeOfDay === 'Morning' ? 'Утро' : timeOfDay === 'Day' ? 'День' : timeOfDay === 'Evening' ? 'Вечер' : 'Ночь'}
+                </span>
+                <div className="day-forecast__current-aqi">
+                  <span className="day-forecast__icon">☁️</span>
+                  <span className="day-forecast__aqi">{data[day][timeOfDay]} AQI</span>
+                </div>
+                <span className={`day-forecast__status ${getAQIStatusClass(data[day][timeOfDay])}`}>
+                  {getAQIStatusText(data[day][timeOfDay])}
+                </span>
+              </div>
+            ))}
+          </div>
+        </React.Fragment>
+      ))}
     </div>
   );
 };
 
+// Функция для определения класса статуса по уровню AQI
+function getAQIStatusClass(aqiRange) {
+  const maxAQI = parseInt(aqiRange.split('-').pop(), 10);
+  if (maxAQI <= 2) return 'normal';
+  if (maxAQI <= 3) return 'moderate';
+  return 'high';
+}
+
+// Функция для определения текста статуса по уровню AQI
+function getAQIStatusText(aqiRange) {
+  const maxAQI = parseInt(aqiRange.split('-').pop(), 10);
+  if (maxAQI <= 2) return 'Показатели в норме';
+  if (maxAQI <= 3) return 'Есть загрязнение';
+  return 'Превышение нормы';
+}
+
 Forecast.propTypes = {
-  forecastGroupedByDay: PropTypes.object,
+  forecastData: PropTypes.object,
 };
 
 export default Forecast;
