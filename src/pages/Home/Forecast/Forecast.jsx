@@ -17,7 +17,7 @@ const Forecast = ({ forecastData }) => {
     const groupedData = { today: { Morning: [], Day: [], Evening: [], Night: [] }, tomorrow: { Morning: [], Day: [], Evening: [], Night: [] } };
 
     const currentDate = new Date();
-    const timezoneOffset = currentDate.getTimezoneOffset() * 60 * 1000;
+    const timezoneOffset = currentDate.getTimezoneOffset();
 
     const today = new Date(currentDate.getTime() - timezoneOffset).toISOString().split('T')[0];
     const tomorrow = new Date(currentDate.setDate(currentDate.getDate() + 1) - timezoneOffset).toISOString().split('T')[0];
@@ -29,6 +29,7 @@ const Forecast = ({ forecastData }) => {
         const day = date.toISOString().split('T')[0];
         const hours = date.getHours();
 
+        console.log(hours)
         const timeOfDay = 
             hours >= 4 && hours < 10 ? "Morning" : 
             hours >= 10 && hours < 16 ? "Day" : 
