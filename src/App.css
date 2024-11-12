@@ -2,6 +2,7 @@
 
 :root {
   --font-family: Arial, sans-serif;
+  --widget-bg-color: #1d3557;
 }
 
 * {
@@ -12,4 +13,11 @@
 
 body {
   font-family: var(--font-family);
+}
+
+.leaflet-control-attribution  {
+  visibility: hidden;
+}
+.leaflet-control {
+  visibility: hidden;
 }
