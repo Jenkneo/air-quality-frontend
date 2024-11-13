@@ -30,7 +30,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <h2 className="title">Сегодня</h2>
+      <h2 className="home-title">Сегодня</h2>
       <AirQuality airData={airData} />
       <Forecast forecastData={forecastData} />
     </div>

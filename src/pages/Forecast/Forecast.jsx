@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useLocation from '../../hooks/useLocation';
 import { getAirPollutionForecast } from '../../services/airPollution';
 import './Forecast.css';
-import { AirQualityCard } from './AirQualityCard';
+import { AirQualityCard } from './AirQualityCard/AirQualityCard';
 
 const Forecast = () => {
   const { location, error } = useLocation();
@@ -20,8 +20,6 @@ const Forecast = () => {
     fetchForecastData();
   }, [location]);
 
-  console.log(forecastData)
-      
   return (
     <div className='forecast-container'>
       <div className="forecast-title">Прогноз загрязнения воздуха на 5 дней</div>
@@ -29,21 +27,17 @@ const Forecast = () => {
         <p>Ошибка определения местоположения: {error}</p>
       ) : (
         forecastData ? (
-          <div className="min-h-screen bg-gray-50 py-12 px-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {forecastData.map((day) => (
-                <AirQualityCard key={day.dt} data={day} />
-              ))}
-            </div>
+          <div className='forecast-inner-container'>
+            {forecastData.map((day, index) => {
+              const sideClass = index % 2 === 0 ? "" : "right-side"; 
+              return <AirQualityCard key={day.dt} data={day} side={sideClass} />;
+            })}
           </div>
-        </div>
         ) : (
           <p>Загрузка прогноза загрязнения воздуха...</p>
         )
       )}
     </div>
-
   );
 };
 

@@ -1,9 +1,20 @@
 .forecast-card {
-  background-color: var(--color-white);
+  background-color: #FFFFFF;
   border-radius: 0.75rem;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
   padding: 1.5rem;
   width: 100%;
+
+  min-width: 300px;
+  max-width: 390px;
+  grid-column: 1 / 2;
+  justify-self: end;
+}
+
+.right-side {
+  grid-column: 2 / 2;
+  justify-self: start;
+
 }
 
 .forecast-card__header {
