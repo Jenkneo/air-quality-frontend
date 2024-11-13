@@ -1,5 +1,3 @@
-/* Home.css */
-
 .home-container {
   display: grid;
   gap: 20px;
@@ -12,7 +10,7 @@
   justify-items: center;
 }
 
-.title {
+.home-title {
   font-size: 2rem;
   color: #333;
   text-align: center;

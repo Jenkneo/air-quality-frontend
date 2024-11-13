@@ -2,27 +2,29 @@
   padding: 20px;
   margin-bottom: 60px;
   background-color: #f0f4f8;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.forecast-inner-container {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+  margin-bottom: 60px;
+  background-color: #f0f4f8;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
 }
 
 .forecast-title {
   font-size: 2rem;
   color: #333;
   text-align: center;
+  max-height: 50px;
+  grid-column: 1 / -1;
 }
 
-.day-card {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 15px;
-  margin: 15px 0;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.hour-card {
-  background-color: #e8f0fe;
-  border-radius: 4px;
-  padding: 10px;
-  margin: 5px 0;
+@media (max-width: 410px) {
+  .forecast-container {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 }

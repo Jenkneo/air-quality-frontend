@@ -26,9 +26,9 @@ const getAQIText = (aqi) => {
   return texts[aqi] || texts[5];
 };
 
-export const AirQualityCard = ({ data }) => {
+export const AirQualityCard = ({ data, side }) => {
   return (
-    <div className='forecast-card'>
+    <div className={`forecast-card ${side}`}>
       <div className='forecast-card__header'>
         <div>
           <h3 className='forecast-card__date'>
