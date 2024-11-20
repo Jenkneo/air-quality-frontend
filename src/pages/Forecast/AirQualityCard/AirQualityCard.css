@@ -14,7 +14,6 @@
 .right-side {
   grid-column: 2 / 2;
   justify-self: start;
-
 }
 
 .forecast-card__header {
@@ -98,4 +97,30 @@
 
 .forecast-card__metricValue {
   font-weight: 600;
+}
+
+@media (max-width: 750px) {
+  .forecast-card {
+    grid-column: 1 / 1;
+    max-width: 710px;
+  }
+}
+
+@media (max-width: 410px) {
+  .forecast-card {
+    padding: 0.8rem;
+    min-width: 250px;
+  }
+
+  .forecast-card__metricValue {
+    font-size: 0.8rem;
+  }
+
+  .forecast-card__grid {
+    gap: 0.1rem;
+  }
+
+  .forecast-card__metric {
+    gap: 0.2rem;
+  }  
 }
