@@ -56,15 +56,6 @@
   cursor: pointer;
 }
 
-/* body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  background-color: #f4f4f9;
-} */
-/* h1 {
-  text-align: center;
-  color: #333;
-} */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -95,5 +86,18 @@ table tr:hover {
   .forecast-container {
     padding-left: 8px;
     padding-right: 8px;
+  }
+  .forecast-title {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 750px) {
+  .forecast-inner-container {
+    grid-template-columns: 1fr;
+  }
+
+  .forecast-title {
+    font-size: 1.7rem;
   }
 }
