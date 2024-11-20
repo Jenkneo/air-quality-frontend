@@ -1,6 +1,6 @@
 import React from 'react';
-import { format } from 'date-fns';
-import { ru } from 'date-fns/locale';
+// import { format } from 'date-fns';
+// import { ru } from 'date-fns/locale';
 import { Wind, Droplets, AlertTriangle } from 'lucide-react';
 import './AirQualityCard.css';
 
@@ -26,16 +26,16 @@ const getAQIText = (aqi) => {
   return texts[aqi] || texts[5];
 };
 
-export const AirQualityCard = ({ data, side }) => {
+export const AirQualityCard = ({ data, side, onClick  }) => {
   return (
-    <div className={`forecast-card ${side}`}>
+    <div className={`forecast-card ${side}`} onClick={onClick}>
       <div className='forecast-card__header'>
         <div>
           <h3 className='forecast-card__date'>
-            {format(new Date(data.dt * 1000), 'd MMMM', { locale: ru })}
+            {Intl.DateTimeFormat('ru-RU', { day: '2-digit', month: 'long' }).format(new Date(data.date))}
           </h3>
           <p className='forecast-card__weekday'>
-            {format(new Date(data.dt * 1000), 'EEEE', { locale: ru })}
+            {Intl.DateTimeFormat('ru-RU', { weekday: 'long' }).format(new Date(data.date))}
           </p>
         </div>
         <span className={getAQIClass(data.main.aqi)}>
