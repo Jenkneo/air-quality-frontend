@@ -39,7 +39,7 @@ export const AirQualityCard = ({ data, side, onClick  }) => {
           </p>
         </div>
         <span className={getAQIClass(data.main.aqi)}>
-          {getAQIText(data.main.aqi)}
+          AQI: {data.main.aqi} {getAQIText(data.main.aqi)}
         </span>
       </div>
 
