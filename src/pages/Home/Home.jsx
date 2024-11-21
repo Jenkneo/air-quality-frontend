@@ -4,6 +4,7 @@ import useLocation from '../../hooks/useLocation';
 import { getAirPollutionData, getAirPollutionForecast } from '../../services/airPollution';
 import AirQuality from './AirQuality/AirQuality';
 import Forecast from './Forecast/Forecast';
+import MiniMap from './MiniMap/MiniMap';
 
 const Home = () => {
   const { location,  } = useLocation();
@@ -33,6 +34,7 @@ const Home = () => {
       <h2 className="home-title">Сегодня</h2>
       <AirQuality airData={airData} />
       <Forecast forecastData={forecastData} />
+      <MiniMap />
     </div>
   );
 };

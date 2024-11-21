@@ -29,7 +29,6 @@ const Forecast = ({ forecastData }) => {
         const day = date.toISOString().split('T')[0];
         const hours = date.getHours();
 
-        console.log(hours)
         const timeOfDay = 
             hours >= 4 && hours < 10 ? "Morning" : 
             hours >= 10 && hours < 16 ? "Day" : 
