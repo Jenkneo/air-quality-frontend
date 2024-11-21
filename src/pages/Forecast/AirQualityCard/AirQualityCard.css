@@ -1,0 +1,126 @@
+.forecast-card {
+  background-color: #FFFFFF;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  padding: 1.5rem;
+  width: 100%;
+
+  min-width: 300px;
+  max-width: 390px;
+  grid-column: 1 / 2;
+  justify-self: end;
+}
+
+.right-side {
+  grid-column: 2 / 2;
+  justify-self: start;
+}
+
+.forecast-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.forecast-card__date {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-gray-800);
+}
+
+.forecast-card__weekday {
+  font-size: 0.875rem;
+  color: var(--color-gray-500);
+}
+
+.forecast-card__badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.forecast-card__badge.excellent {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.forecast-card__badge.good {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.forecast-card__badge.moderate {
+  background-color: #ffedd5;
+  color: #9a3412;
+}
+
+.forecast-card__badge.poor {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.forecast-card__badge.veryPoor {
+  background-color: #f3e8ff;
+  color: #6b21a8;
+}
+
+.forecast-card__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.forecast-card__column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.forecast-card__metric {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.forecast-card__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--color-primary);
+}
+
+.forecast-card__metricLabel {
+  font-size: 0.875rem;
+  color: var(--color-gray-600);
+}
+
+.forecast-card__metricValue {
+  font-weight: 600;
+}
+
+@media (max-width: 750px) {
+  .forecast-card {
+    grid-column: 1 / 1;
+    max-width: 710px;
+  }
+}
+
+@media (max-width: 410px) {
+  .forecast-card {
+    padding: 0.8rem;
+    min-width: 250px;
+  }
+
+  .forecast-card__metricValue {
+    font-size: 0.8rem;
+  }
+
+  .forecast-card__grid {
+    gap: 0.1rem;
+  }
+
+  .forecast-card__metric {
+    gap: 0.2rem;
+  }  
+}

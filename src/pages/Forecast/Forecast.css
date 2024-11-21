@@ -1,0 +1,103 @@
+.forecast-container {
+  padding: 20px;
+  margin-bottom: 60px;
+  background-color: #f0f4f8;
+}
+
+.forecast-inner-container {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+  margin-bottom: 60px;
+  background-color: #f0f4f8;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+
+.forecast-title {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+  max-height: 50px;
+  grid-column: 1 / -1;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 800px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Позволяет прокручивать список при переполнении */
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: #fff;
+}
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+table th {
+  background: #007BFF;
+  color: #fff;
+}
+table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+table tr:hover {
+  background: #f1f1f1;
+}
+.timestamp {
+  font-size: 0.9em;
+  color: #666;
+}
+
+@media (max-width: 410px) {
+  .forecast-container {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .forecast-title {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 750px) {
+  .forecast-inner-container {
+    grid-template-columns: 1fr;
+  }
+
+  .forecast-title {
+    font-size: 1.7rem;
+  }
+}

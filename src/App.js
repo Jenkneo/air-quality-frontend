@@ -5,18 +5,15 @@ import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import Map from './pages/Map/Map';
 import PollutionInfo from './pages/PollutionInfo';
-import Forecast from './pages/Forecast';
+import Forecast from './pages/Forecast/Forecast';
 import Notifications from './pages/Notifications/Notifications';
 import SmokePrediction from './pages/SmokePrediction';
 import SafeLevels from './pages/SafeLevels';
-import GlobalStyles from './styles/GlobalStyles';
-
 import './App.css';
 
 function App() {
   return (
     <Router>
-      <GlobalStyles />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

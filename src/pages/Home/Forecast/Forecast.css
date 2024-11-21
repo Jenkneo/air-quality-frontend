@@ -3,13 +3,14 @@
   color: #fff;
   padding: 10px;
   border-radius: 10px;
-  min-width: 300px;
-  max-width: 390px;
   font-size: 18px;
   padding: 20px;
+  width: 100%;
+  
+  min-width: 300px;
+  max-width: 390px;
   grid-column: 1 / 2;
   justify-self: end;
-  width: 100%;
 }
 
 .day-forecast__time,
