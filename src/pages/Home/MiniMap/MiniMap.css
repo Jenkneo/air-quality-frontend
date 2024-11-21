@@ -1,0 +1,19 @@
+.minimap-container{
+  min-width: 300px;
+  max-width: 390px;
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  grid-column: 2 / 2;
+  justify-self: start;
+  padding: 0px;
+  border: 5px solid var(--widget-bg-color);
+}
+
+@media (max-width: 660px) {
+  .minimap-container {
+    grid-column: 1 / -1;
+    max-width: 660px;
+  }
+}
