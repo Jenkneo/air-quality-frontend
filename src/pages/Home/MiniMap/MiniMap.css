@@ -15,5 +15,6 @@
   .minimap-container {
     grid-column: 1 / -1;
     max-width: 660px;
+    max-height: 270px;
   }
 }
