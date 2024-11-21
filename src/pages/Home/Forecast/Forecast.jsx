@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Forecast.css';
+import { NavLink } from 'react-router-dom';
+
 
 const Forecast = ({ forecastData }) => {
   if (!forecastData) {
@@ -74,7 +76,7 @@ const Forecast = ({ forecastData }) => {
   const data = summarizeData(groupByDayAndTimeOfDay(dayForecast));
 
   return (
-    <div className="day-forecast__widget">
+    <NavLink className="day-forecast__widget" to="/forecast">
       {Object.keys(data).map((day, index) => (
         <React.Fragment key={day}>
           {/* Разделитель между "сегодня" и "завтра" */}
@@ -104,7 +106,7 @@ const Forecast = ({ forecastData }) => {
           </div>
         </React.Fragment>
       ))}
-    </div>
+    </NavLink>
   );
 };
 
