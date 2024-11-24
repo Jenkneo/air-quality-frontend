@@ -1,5 +1,3 @@
-// airQualityRecommendations.js
-
 export const getHealthRecommendations = (aqi) => {
     switch (aqi) {
       case 1:

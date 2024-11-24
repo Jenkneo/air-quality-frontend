@@ -3,8 +3,7 @@ name: Docker Build and Deploy
 on:
   push:
     branches:
-      - development
-
+      - production
 
 jobs:
   build_and_push_to_docker_hub:
@@ -25,4 +24,4 @@ jobs:
           with:
             push: true
             context: .
-            tags: ${{ secrets.DOCKER_USERNAME }}/air-stylua-frontend:latest
+            tags: ${{ secrets.DOCKER_USERNAME }}/air-quality-frontend:latest
