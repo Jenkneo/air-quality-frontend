@@ -9,33 +9,40 @@ Deploy status: [![Netlify Status](https://api.netlify.com/api/v1/badges/a7085ba0
 ## Струтктура проекта
 ```
 weather-app/
-├── node_modules/
 ├── public/
 ├── src/
 │   ├── components/
-│   │   ├── Header.jsx
-│   │   └── Footer.jsx
+│   │   ├── Header/
+│   │   └── Footer/
 │   ├── pages/
-│   │   ├── Home.jsx
-│   │   ├── Map.jsx
-│   │   ├── PollutionInfo.jsx
-│   │   ├── Forecast.jsx
-│   │   ├── Notifications.jsx
-│   │   ├── SmokePrediction.jsx
-│   │   ├── SafeLevels.jsx
-│   │   └── News.jsx
+│   │   ├── Home/
+│   │   ├── Map/
+│   │   ├── Forecast/
+│   │   ├── Notifications/
+│   │   └── SafeLevels/
+│   ├── hooks/
+│   ├── services/
+│   ├── utils/
 │   ├── App.jsx
+│   ├── config.js
 │   ├── index.js
-│   └── styles/
-│       └── GlobalStyles.jsx
 ├── package.json
 └── README.md
 ```
 
+## Описание проекта
+
+Air Quality App - онлайн-сервис, где пользователи могут посмотреть текущее состояние воздуха в своем городе, прогноз загрязнений воздуха, узнать допустимые и не допустимые нормы загрязнений, а так же подписаться на рассылку, которая оповещает пользователя о будущих загрязнениях.
+
+## Инструкции
+
+На данный момент сервис обращается к API бекенда, расположенного на stylua.ru
+Исходный код бекенда можно найти [здесь](https://github.com/nuafirytiasewo/air-pollution-backend)
+
+Уведомления пользователям реализованы через бота в Telegram.
+Установить редирект на своего бота, а так-же другие настройки можно поменять в `config.js`
 
 ## Запуск проекта
-После скачивания просто установите все зависимости и запустите проект.
-```
-npm install && npm start
-```
-Проект пока не должен запустится потому что ничего нет.
+1. Склонируйте репозиторий
+2. Установите все зависимости
+3. Запустите проект командой `npm start`

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Circle, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import { getFakeAirPollutionMap } from '../../services/airPollution';
+import { getAirPollutionMap } from '../../services/airPollution';
 import { getColor } from '../../hooks/airQualityRecommendations';
 import './Map.css'
 import useLocation from '../../hooks/useLocation';
@@ -22,7 +22,7 @@ const MapComponent = () => {
 
   useEffect(() => {
     const fetchPollutionData = async () => {
-      const data = await getFakeAirPollutionMap();
+      const data = await getAirPollutionMap();
       setPollutionData(data);
     };
     fetchPollutionData();
