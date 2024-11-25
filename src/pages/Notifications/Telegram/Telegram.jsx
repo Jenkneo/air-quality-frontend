@@ -9,8 +9,8 @@ const TELEGRAM_BOT_URL = `${TELEGRAM_URL}/${TELEGRAM_BOT_USERNAME}`;
 const Telegram = () => {
   const redirectToTelegram = () => {
     const location = getCache(GEOLOCATION_KEY)
-    const lon = String(location.lon).replace('.', '-');
-    const lat = String(location.lat).replace('.', '-');
+    const lon = String(location.lon).replace('.', 'd');
+    const lat = String(location.lat).replace('.', 'd');
     const url = `${TELEGRAM_BOT_URL}?start=lon${lon}lat${lat}`
 
     window.open(url, '_blank', 'noopener,noreferrer');
