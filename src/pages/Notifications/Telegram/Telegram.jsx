@@ -3,7 +3,7 @@ import './Telegram.css';
 import { getCache } from '../../../utils/cache';
 import { TELEGRAM_BOT_USERNAME, TELEGRAM_URL } from '../../../config';
 
-const GEOLOCATION_KEY = 'geolocation';
+const GEOLOCATION_KEY = 'location';
 const TELEGRAM_BOT_URL = `${TELEGRAM_URL}/${TELEGRAM_BOT_USERNAME}`;
 
 const Telegram = () => {
