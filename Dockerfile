@@ -1,5 +1,5 @@
 # 1. Используем официальный Node.js образ как базовый
-FROM node:18-alpine
+FROM node:18-alpine AS build
 
 # 2. Задаем рабочую директорию в контейнере
 WORKDIR /app
@@ -18,10 +18,13 @@ RUN npm run build
 
 # 7. Используем Nginx для запуска нашего приложения
 FROM nginx:1.23-alpine
-COPY --from=0 /app/build /usr/share/nginx/html
+COPY --from=build /app/build /usr/share/nginx/html
 
-# 8. Экспонируем порт 80 для доступа к приложению
+# 8. Копируем пользовательскую конфигурацию Nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# 9. Экспонируем порт 80 для доступа к приложению
 EXPOSE 80
 
-# 9. Запускаем Nginx
+# 10. Запускаем Nginx
 CMD ["nginx", "-g", "daemon off;"]
