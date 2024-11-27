@@ -93,7 +93,7 @@ const Forecast = () => {
         <div className='forecast-inner-container'>
           {forecastData.map((day, index) => {
             const sideClass = index % 2 === 0 ? "" : "right-side"; 
-            return <AirQualityCard key={day.dt} data={day} side={sideClass} onClick={() => openPopup(day)}/>;
+            return <AirQualityCard key={`${day.dt}-${index}`} data={day} side={sideClass} onClick={() => openPopup(day)}/>;
           })}
         </div>
         ) : (
