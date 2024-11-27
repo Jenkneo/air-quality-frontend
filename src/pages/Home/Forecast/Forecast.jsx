@@ -7,10 +7,12 @@ import { NavLink } from 'react-router-dom';
 const Forecast = ({ forecastData }) => {
   if (!forecastData) {
     return (
-      <div className="forecast-container">
-        <h3>Данные прогноза недоступны или все еще подгружаются...</h3>
+      <div className="day-forecast__widget">
+        <div className="loading-container-icon">
+          <i className="fa fa-spinner fa-spin" />
+        </div>
       </div>
-    );
+    )
   }
 
   const dayForecast = forecastData.list.slice(0, 24);
