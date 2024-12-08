@@ -6,7 +6,6 @@ const Notifications = () => {
   return (
     <div className="notifications-container">
       <h2 className="notifications-title">Уведомления</h2>
-      <p>Получать уведомления возможно пока только через Telegram.</p>
       <Telegram />
     </div>
   );
