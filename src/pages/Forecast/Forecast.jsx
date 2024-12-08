@@ -49,15 +49,14 @@ const Forecast = () => {
       if (!rawForecastData) return;
       let data = rawForecastData;
 
-      // Группируем данные по дням
+      const timezoneOffset = new Date().getTimezoneOffset() * 60000;
       const groupedByDay = data.list.reduce((acc, entry) => {
-        const date = new Date(entry.dt * 1000).toISOString().split('T')[0]; // Форматируем дату
+        const date = new Date(entry.dt * 1000 - timezoneOffset).toISOString().split('T')[0];
         if (!acc[date]) acc[date] = [];
         acc[date].push(entry);
         return acc;
       }, {});
 
-      // Для каждого дня находим максимальные значения по компонентам
       const dailyMaxValues = Object.entries(groupedByDay).map(([date, entries]) => {
         const maxComponents = entries.reduce(
           (maxValues, currentEntry) => {
@@ -85,6 +84,7 @@ const Forecast = () => {
     fetchForecastData();
   }, [rawForecastData]);
 
+
   return (
     <div className='forecast-container'>
       <div className="forecast-title">Прогноз загрязнения воздуха</div>
@@ -93,7 +93,7 @@ const Forecast = () => {
         <div className='forecast-inner-container'>
           {forecastData.map((day, index) => {
             const sideClass = index % 2 === 0 ? "" : "right-side"; 
-            return <AirQualityCard key={day.dt} data={day} side={sideClass} onClick={() => openPopup(day)}/>;
+            return <AirQualityCard key={`${day.dt}-${index}`} data={day} side={sideClass} onClick={() => openPopup(day)}/>;
           })}
         </div>
         ) : (
